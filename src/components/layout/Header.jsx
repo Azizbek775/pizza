@@ -12,30 +12,32 @@ const Header = () => {
   return (
     <header className='sticky top-0 z-20 bg-white/80 backdrop-blur'>
       <nav className='container py-3'>
-        <div className='flex items-center justify-between gap-3'>
+        <div className='flex flex-wrap items-center justify-between gap-3'>
           <Link to='/' className='flex items-center gap-2'>
             <img src={logo} alt="" className='h-10 w-auto' />
           </Link>
-          <div className='hidden md:flex items-center gap-4'>
+          <div className='hidden md:flex items-center gap-6 ml-auto'>
             <LanguageSwitcher />
-            <button className='h-10 rounded-3xl bg-gray-200 px-5 text-sm font-semibold text-gray-700'>{t('buttons.requestCall')}</button>
-            <a className='text-lg md:text-2xl font-bold text-amber-300' href='tel:84993915275'>8 499 391-52-75</a>
+            <button className='h-10 rounded-3xl bg-gray-200 px-6 text-sm font-semibold text-gray-700'>
+              {t('buttons.requestCall')}
+            </button>
+            <a
+              className='text-[18px] font-extrabold text-yellow-400 md:text-[26px] md:leading-none'
+              href='tel:84993918449'
+            >
+              8 499 391-84-49
+            </a>
           </div>
-          <div className='flex items-center gap-3'>
-            <div className='md:hidden'>
+          <div className='flex items-center gap-3 flex-shrink-0 md:hidden'>
+            <div>
               <LanguageSwitcher />
             </div>
-            <Link to='/favorites' className='relative rounded px-3 py-2 hover:bg-gray-100' aria-label={t('nav.favorites')}>❤</Link>
-            <Link to='/cart' className='relative rounded bg-yellow-300 px-4 py-2 font-semibold text-white'>
-              {t('nav.cart')}
-              <span className='ml-2 bg-white text-yellow-500 rounded px-2 py-0.5 text-xs align-middle'>{cartCount}</span>
-            </Link>
             <button className='md:hidden w-10 h-10 border rounded' onClick={() => setOpen(!open)} aria-label='menu'>☰</button>
           </div>
         </div>
 
-        <div className='mt-4 hidden md:block'>
-          <ul className="flex flex-wrap gap-4 font-semibold text-[16px]">
+        <div className='mt-4 hidden md:flex items-center justify-between gap-6'>
+          <ul className="flex flex-wrap gap-4 font-semibold text-[15px]">
             <li><Link to={'/'}>{t('nav.home')}</Link></li>
             <li><Link to={'/pizza'}>{t('nav.pizza')}</Link></li>
             <li><Link to={'/pasta'}>{t('nav.pasta')}</Link></li>
@@ -47,6 +49,19 @@ const Header = () => {
             <li><Link to={'/promotions'}>{t('nav.promotions')}</Link></li>
             <li><Link to={'/contact'}>{t('nav.contact')}</Link></li>
           </ul>
+          <div className='flex items-center gap-4'>
+            <Link to='/favorites' className='text-sm font-semibold text-gray-700 hover:text-gray-900'>
+              {t('nav.favorites')}
+            </Link>
+            <Link
+              to='/cart'
+              className='relative flex items-center gap-3 rounded-[999px] bg-yellow-300 px-6 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-yellow-400'
+            >
+              {t('nav.cart')}
+              <span className='h-5 border-l border-yellow-200' />
+              <span className='text-sm'>{cartCount}</span>
+            </Link>
+          </div>
         </div>
 
         {open && (
@@ -66,7 +81,7 @@ const Header = () => {
               <li><Link to='/cart' onClick={() => setOpen(false)}>{`${t('nav.cart')} (${cartCount})`}</Link></li>
             </ul>
             <div className='mt-3 flex items-center justify-between'>
-              <a href='tel:84993915275' className='font-semibold text-amber-400'>8 499 391-52-75</a>
+              <a href='tel:84993918449' className='font-semibold text-yellow-400'>8 499 391-84-49</a>
               <button className='text-sm font-semibold text-gray-600' onClick={() => setOpen(false)}>
                 {t('buttons.requestCall')}
               </button>

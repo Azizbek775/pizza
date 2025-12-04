@@ -6,54 +6,78 @@ import { useTranslation } from '../../context/LanguageContext'
 const Footer = () => {
   const { t } = useTranslation()
   return (
-    <footer className='mt-20 border-t'>
-      <div className='container py-8'>
+    <footer className='mt-16 border-t bg-white'>
+      <div className='container py-10'>
+        {/* Top row: logo + question */}
         <div className='flex flex-col gap-4 md:flex-row md:items-center md:justify-between'>
-          <img src={Logo} alt="" className='h-10 w-auto' />
-          <h1 className='text-center text-lg font-bold md:text-left md:text-xl'>{t('footer.question')}</h1>
+          <img src={Logo} alt='' className='h-10 w-auto' />
+          <h2 className='text-center text-lg font-bold md:text-left md:text-xl'>
+            {t('footer.question')}
+          </h2>
         </div>
 
-        <div className='mt-8 grid grid-cols-1 gap-6 md:grid-cols-3'>
-          <div className='space-y-2 text-center font-semibold md:text-left'>
-            <p>{t('footer.nutrition')}</p>
-            <p>{t('footer.legal')}</p>
+        {/* Middle row: links + messengers */}
+        <div className='mt-8 grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]'>
+          <div className='space-y-2 text-center text-sm font-semibold md:text-left'>
+            <button className='block w-full text-gray-700 hover:text-gray-900 md:w-auto'>
+              {t('footer.nutrition')}
+            </button>
+            <button className='block w-full text-gray-700 hover:text-gray-900 md:w-auto'>
+              {t('footer.legal')}
+            </button>
           </div>
-          <div className='md:col-span-2'>
-            <div className='grid grid-cols-3 gap-3'>
+
+          <div className='space-y-4'>
+            <div className='grid grid-cols-3 gap-3 sm:grid-cols-6'>
               {Array.from({ length: 6 }).map((_, idx) => (
-                <button key={idx} className='rounded-[13px] border px-4 py-2'>
-                  <img src={Icon} alt='' className='mx-auto' />
+                <button
+                  key={idx}
+                  className='flex items-center justify-center rounded-[13px] border bg-white px-4 py-2 shadow-sm hover:bg-gray-50'
+                >
+                  <img src={Icon} alt='' className='h-5 w-5' />
                 </button>
               ))}
             </div>
-            <div className='mt-4 flex flex-col gap-3 sm:flex-row'>
-              <button className='flex-1 rounded-[13px] border px-6 py-2 sm:flex-none'>
-                <img src={Icon} alt='' className='mx-auto' />
+
+            <div className='flex flex-col gap-3 sm:flex-row sm:items-center'>
+              <button className='flex-1 rounded-[13px] border bg-white px-6 py-3 text-sm font-semibold hover:bg-gray-50'>
+                {t('buttons.writeUs') ?? t('footer.writeUs')}
               </button>
-              <button className='flex-1 rounded-[13px] border px-6 py-2 sm:flex-none'>
-                <img src={Icon} alt='' className='mx-auto' />
+              <button className='flex-1 rounded-[13px] border bg-white px-6 py-3 text-sm font-semibold hover:bg-gray-50'>
+                {t('footer.callRequest')}
               </button>
-              <button className='rounded-[13px] border px-6 py-2 text-[16px] font-semibold'>{t('buttons.writeUs') ?? t('footer.writeUs')}</button>
             </div>
           </div>
         </div>
 
-        <div className='mt-8 grid grid-cols-2 gap-4 text-gray-600 md:grid-cols-4'>
-          <p>YouTube</p>
-          <p>Facebook</p>
-          <p>Instagram</p>
-          <p>VK</p>
+        {/* Social row */}
+        <div className='mt-8 flex flex-wrap items-center gap-4 text-sm text-gray-600'>
+          <span className='font-semibold'>Мы в соцсетях:</span>
+          <div className='flex flex-wrap gap-4'>
+            <span>YouTube</span>
+            <span>Facebook</span>
+            <span>Instagram</span>
+            <span>VK</span>
+          </div>
         </div>
 
-        
-
-        <div className='mt-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between'>
-          <p className='text-center text-gray-600 md:text-left'>{t('footer.address')}</p>
-          <button className='w-full rounded-3xl bg-gray-200 py-3 px-6 font-semibold md:w-auto'>{t('footer.callRequest')}</button>
-          <a className='w-full text-center text-2xl font-bold text-yellow-300 md:w-auto' href='tel:84993918449'>8 499 391-84-49</a>
+        {/* Bottom row: address + call + phone */}
+        <div className='mt-8 flex flex-col gap-3 border-t pt-4 md:flex-row md:items-center md:justify-between'>
+          <p className='text-center text-sm text-gray-600 md:text-left'>{t('footer.address')}</p>
+          <div className='flex flex-col gap-3 sm:flex-row sm:items-center'>
+            <button className='w-full rounded-3xl bg-gray-200 px-6 py-3 text-sm font-semibold md:w-auto'>
+              {t('footer.callRequest')}
+            </button>
+            <a
+              className='w-full text-center text-2xl font-extrabold text-yellow-400 md:w-auto'
+              href='tel:84993918449'
+            >
+              8 499 391-84-49
+            </a>
+          </div>
         </div>
 
-        <p className='mt-6 text-center text-sm text-gray-500'>{t('footer.rights')}</p>
+        <p className='mt-6 text-center text-xs text-gray-500 md:text-sm'>{t('footer.rights')}</p>
       </div>
     </footer>
   )
